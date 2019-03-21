@@ -23,7 +23,10 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
+
     if @project.save
+      Assignment.create(user_id: current_user.id, project_id: @project.id)
+
       redirect_to @project
     else
       render 'new'

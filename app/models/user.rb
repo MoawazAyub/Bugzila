@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   has_many :projects, through: :assignments
 
   #has_one :bug_worker, :class_name => 'Bug', :foreign_key => 'worker_id'

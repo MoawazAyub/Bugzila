@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
-	has_many :bugs
-	has_many :assignments
+	has_many :bugs, dependent: :destroy
+	has_many :assignments, dependent: :destroy
 	has_many :users, through: :assignments
+
+
 end
