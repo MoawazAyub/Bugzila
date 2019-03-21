@@ -1,0 +1,42 @@
+
+<h2><%= @project.title %></h2>
+<br>
+<h5><b>ID: </b><%= @project.id %></h5>
+<h5><b>Description: </b><%= @project.description %></h5>
+<h5><b>Creation Time: </b><%= @project.created_at %></h5>
+
+<br>
+<%= link_to "Edit project ", edit_project_path(@project) %>|
+<%= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
+<hr class="drawline">
+
+<table style="width:100%">
+	<tr>
+		<th>Bug ID</th>
+		<th>Bug title</th>
+		<th>Deadline</th>
+		<th>Screen Shot</th>
+		<th>type</th>
+		<th>status</th>
+		<th>created_at</th>
+		<th>founder id</th>
+	</tr>
+
+	<% @bugs.each do |bug| %>
+
+		<tr>
+			<td><%= bug.id %></td>
+			<td><%= bug.title %></td>
+			<td><%= bug.deadline %></td>
+			<td><%= bug.screenshot %></td>
+			<td><%= bug.bug_type %></td>
+			<td><%= bug.status %></td>
+			<td><%= bug.created_at %></td>
+			<td><%= bug.founder_id %></td>
+
+		</tr>
+		  
+	<% end %>
+
+</table> 
+

@@ -1,0 +1,33 @@
+<h3 class="role_teller"> you are logged in as <%= current_user.role %></h3>
+
+
+
+<% if current_user.role == 'manager' %>
+
+	<h1>All Projects</h1>
+
+	<table style="width:100%">
+		<tr>
+			<th>Project ID</th>
+			<th>Project Title</th>
+			<th>Description</th>
+			<th>Created_at</th>
+			<th>Actions</th>
+		</tr>
+
+		<% @projects.each do |project| %>
+
+			<tr>
+				<td><%= project.id %></td>
+				<td><%= project.title %></td>
+				<td><%= project.description %></td>
+				<td><%= project.created_at %></td>
+				<td><%= link_to "show", project, class: 'whiter' %></td>
+			</tr>
+			  
+		<% end %>
+
+	</table> 
+	<%= link_to "Add new Project", new_project_path %>
+
+<% end %>

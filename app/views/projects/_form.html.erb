@@ -1,0 +1,25 @@
+<%= form_for @project do |f| %>
+	<% if @project.errors.any? %>
+		<h2>Errors</h2>
+		<ul>
+			<% @project.errors.full_messages.each do |message| %>
+				<li><%= message%></li>
+			<% end %>
+		</ul>
+	<% end %>
+		<div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :title%><br>
+		<%= f.text_field :title, autofocus: true, class: "form-control" %><br>
+	    </div>
+	  </div>  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :description%><br>
+		<%= f.text_area :description, autofocus: true, class: "form-control" %><br>
+	    </div>
+	  </div>
+
+	<%= f.submit %>
+<% end %>
+
+
