@@ -6,8 +6,13 @@
 <h5><b>Creation Time: </b><%= @project.created_at %></h5>
 
 <br>
-<%= link_to "Edit project ", edit_project_path(@project) %>|
-<%= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
+
+<% if current_user.role == 'manager' %>
+	<%= link_to "Edit project ", edit_project_path(@project) %>|
+	<%= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
+
+<% end %>
+
 <hr class="drawline">
 
 <table style="width:100%">
