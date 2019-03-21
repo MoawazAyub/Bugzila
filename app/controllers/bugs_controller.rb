@@ -29,10 +29,20 @@ class BugsController < ApplicationController
   end
 
   def update
+
+    if @bug.update(bug_params)
+
+      redirect_to [@project, @bug]
+    else
+      render 'new'
+    end
+
   end
 
 
   def destroy
+    @bug.destroy
+    redirect_to @project
   end
 
   private

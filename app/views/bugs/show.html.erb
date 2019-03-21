@@ -13,3 +13,11 @@
 <%if @bug.user %>
 	<h5><b>Asigned To: </b><%= @bug.user.username %></h5>
 <% end %>
+
+<hr class="drawline">
+
+<% if current_user.role == 'qa' %>
+	<%= link_to "Edit Bug ", edit_project_bug_path(@project.id, @bug.id) %>|
+	<%= link_to "Delete Bug", project_bug_path(@project.id, @bug.id), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
+
+<% end %>
