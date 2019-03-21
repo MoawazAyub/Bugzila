@@ -1,2 +1,45 @@
-<h1>Bugs#new</h1>
-<p>Find me in app/views/bugs/new.html.erb</p>
+<%= form_for [@project, @bug] do |f| %>
+	<% if @bug.errors.any? %>
+		<h2>Errors</h2>
+		<ul>
+			<% @bug.errors.full_messages.each do |message| %>
+				<li><%= message%></li>
+			<% end %>
+		</ul>
+	<% end %>
+	  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :title%><br>
+		<%= f.text_field :title, autofocus: true, class: "form-control" %><br>
+	    </div>
+	  </div>
+
+
+	  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :deadline%><br>
+		<%= f.date_select :deadline,{:order => [:year, :month, :day]}, autofocus: true %><br>
+	    </div>
+	  </div>  
+
+	  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :bug_type%><br>
+		<%= f.select :bug_type, ['feature', 'bug'], class: "form-control"%><br>
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :status%><br>
+		<%= f.select :status, ['new', 'started', 'completed', 'resolved'], class: "form-control"%><br>
+	    </div>
+	  </div>
+
+
+
+
+
+	<%= f.submit %>
+<% end %>
+

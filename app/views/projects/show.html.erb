@@ -39,11 +39,14 @@
 			<td><%= bug.status %></td>
 			<td><%= bug.created_at %></td>
 			<td><%= bug.founder_id %></td>
-			<td><%= link_to "Show Bug ", project_bug_path(@project), class: 'whiter' %></td>
+			<td><%= link_to "Show Bug ", project_bug_path(@project.id,bug), class: 'whiter' %></td>
 
 		</tr>
 		  
 	<% end %>
 
-</table> 
+</table>
 
+<% if current_user.role == 'qa' %>
+	<%= link_to "Add new Bug", new_project_bug_path(@project) %> 
+<% end %>

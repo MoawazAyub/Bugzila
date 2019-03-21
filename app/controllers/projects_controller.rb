@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
   end
 
-    def project_params
+  def project_params
     params.require(:project).permit(:title, :description)
   end
 end
