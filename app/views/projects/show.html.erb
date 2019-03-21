@@ -25,6 +25,7 @@
 		<th>status</th>
 		<th>created_at</th>
 		<th>founder id</th>
+		<th>Actions</th>
 	</tr>
 
 	<% @bugs.each do |bug| %>
@@ -38,6 +39,7 @@
 			<td><%= bug.status %></td>
 			<td><%= bug.created_at %></td>
 			<td><%= bug.founder_id %></td>
+			<td><%= link_to "Show Bug ", project_bug_path(@project), class: 'whiter' %></td>
 
 		</tr>
 		  
