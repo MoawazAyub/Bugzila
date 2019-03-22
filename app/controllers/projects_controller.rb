@@ -8,13 +8,16 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    authorize @projects
   end
 
   def new
     @project = Project.new
+    authorize @project
   end
 
   def edit
+    authorize @project
   end
 
   def show
@@ -46,6 +49,7 @@ class ProjectsController < ApplicationController
 
   def find_project
     @project = Project.find(params[:id])
+    authorize @project
   end
 
   def project_params

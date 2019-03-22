@@ -1,12 +1,15 @@
 class BugsController < ApplicationController
   before_action :find_bug, only: [:show, :edit, :update, :destroy]
   def index
+    @bugs = Bug.all
+    authorize @bugs
   end
 
   def create
     @project = Project.find(params[:project_id])
     @bug = @project.bugs.new(bug_params)
     @bug.founder_id = current_user.id
+    authorize @bug
     if @bug.save
 
       redirect_to [@project, @bug]
@@ -21,6 +24,7 @@ class BugsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     @bug = Bug.new
+    authorize @bug
 
 
   end

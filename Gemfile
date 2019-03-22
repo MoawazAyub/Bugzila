@@ -11,6 +11,8 @@ gem 'jquery-rails'
 
 gem 'devise'
 
+gem 'pundit'
+
 gem 'bootstrap-datepicker-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
