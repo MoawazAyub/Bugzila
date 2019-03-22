@@ -1,5 +1,12 @@
 class ProjectPolicy < ApplicationPolicy
 
+  def show?
+    if record.users.include? user
+      return true
+    end
+    false
+  end
+
   def index?
   	if user.present?
   		return true

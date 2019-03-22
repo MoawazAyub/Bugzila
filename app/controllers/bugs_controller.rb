@@ -49,6 +49,21 @@ class BugsController < ApplicationController
     redirect_to @project
   end
 
+  def assign
+    @project = Project.find(params[:project_id])
+    @bug = @project.bugs.find(params[:id])
+    if @bug.user
+      p 'user already assigned'
+    else
+      @bug.user = current_user
+      if @bug.save
+        redirect_back(fallback_location: root_path)
+      end
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def find_bug

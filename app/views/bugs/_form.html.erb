@@ -7,6 +7,7 @@
 			<% end %>
 		</ul>
 	<% end %>
+	<% if current_user.role != 'developer' %>
 	  <div class="row">
 	    <div class="form-group col-md-4">
 	    <%= f.label :title%><br>
@@ -28,6 +29,7 @@
 		<%= f.select :bug_type, ['feature', 'bug'], class: "form-control"%><br>
 	    </div>
 	  </div>
+	 <% end %>
 
 	  <div class="row">
 	    <div class="form-group col-md-4">
