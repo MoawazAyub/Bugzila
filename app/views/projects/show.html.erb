@@ -14,7 +14,7 @@
 <% end %>
 
 <hr class="drawline">
-
+<h4>BUGS in this Project</h4>
 <table style="width:100%">
 	<tr>
 		<th>Bug ID</th>
@@ -49,4 +49,37 @@
 
 <% if current_user.role == 'qa' %>
 	<%= link_to "Add new Bug", new_project_bug_path(@project) %> 
+<% end %>
+
+<% if current_user.role == 'manager' %>
+	<hr class="drawline">
+	<h4>Available People</h4>
+
+	<table style="width:100%">
+		<tr>
+			<th>User ID</th>
+			<th>Email</th>
+			<th>Name</th>
+			<th>User joining date</th>
+			<th>Role</th>
+			<th>Action</th>
+		</tr>
+
+		<% @users.each do |user| %>
+			<% if (!@project.users.include? user) && !(user.role == 'manager')%>
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.email %></td>
+					<td><%= user.username %></td>
+					<td><%= user.created_at %></td>
+					<td><%= user.role %></td>
+					<td><%= link_to "Add this User", user_assign_path(@project.id,user.id), class: 'whiter', method: :post %></td>
+
+ 				</tr>
+			<% end %>
+				  
+		<% end %>
+
+	</table>
+
 <% end %>

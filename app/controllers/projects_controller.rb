@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
 
   def show
     @bugs = @project.bugs
+    @users = User.all
   end
 
   def create
@@ -43,6 +44,12 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def userassign
+    @project = Project.find(params[:id])
+    Assignment.create(user_id: params[:user_id], project_id: @project.id)
+    redirect_back(fallback_location: root_path)
   end
 
   private

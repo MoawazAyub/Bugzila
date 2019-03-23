@@ -57,7 +57,7 @@ class BugsController < ApplicationController
     else
       @bug.user = current_user
       if @bug.save
-        redirect_back(fallback_location: root_path)
+        p 'Saved'
       end
     end
 
