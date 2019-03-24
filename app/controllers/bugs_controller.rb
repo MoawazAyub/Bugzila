@@ -5,12 +5,32 @@ class BugsController < ApplicationController
     authorize @bugs
   end
 
+  def already_bug(project,new_bug)
+
+    project.bugs.each do |bug|
+      if !(bug.id.nil?) && bug.title == new_bug.title
+        return true
+      end
+    end
+    return false
+    
+  end
+
   def create
     @project = Project.find(params[:project_id])
+    @temp_project = @project
     @bug = @project.bugs.new(bug_params)
+    @temp = already_bug(@temp_project,@bug)
+    if already_bug(@temp_project,@bug)
+      flash[:notice] = "Bug Already exists!"
+      
+    end
+    #binding.pry
+
     @bug.founder_id = current_user.id
     authorize @bug
-    if @bug.save
+    
+    if !(@temp) && @bug.save  
 
       redirect_to [@project, @bug]
     else

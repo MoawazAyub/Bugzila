@@ -7,4 +7,8 @@ class Bug < ApplicationRecord
     has_one :user, through: :fix
 
     mount_uploader :screenshot, ImageUploader
+
+    validates :title, presence: true
+
+
 end

@@ -13,5 +13,7 @@ class User < ApplicationRecord
   has_many :fixes
   has_many :bugs, through: :fixes
 
+  validates :username, presence: true
+
 
 end
