@@ -34,7 +34,7 @@
 			<td><%= bug.id %></td>
 			<td><%= bug.title %></td>
 			<td><%= bug.deadline %></td>
-			<td><%= bug.screenshot %></td>
+			<td><%= image_tag bug.screenshot_url(:thumb).to_s %></td>
 			<td><%= bug.bug_type %></td>
 			<td><%= bug.status %></td>
 			<td><%= bug.created_at %></td>

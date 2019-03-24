@@ -1,4 +1,4 @@
-<%= form_for [@project, @bug] do |f| %>
+<%= form_for [@project, @bug], :html => {:multipart => true} do |f| %>
 	<% if @bug.errors.any? %>
 		<h2>Errors</h2>
 		<ul>
@@ -35,6 +35,13 @@
 	    <div class="form-group col-md-4">
 	    <%= f.label :status%><br>
 		<%= f.select :status, ['new', 'started', 'completed', 'resolved'], class: "form-control"%><br>
+	    </div>
+	  </div>
+
+	  <div class="row">
+	    <div class="form-group col-md-4">
+	    <%= f.label :screenshot%><br>
+		<%= f.file_field :screenshot%><br>
 	    </div>
 	  </div>
 

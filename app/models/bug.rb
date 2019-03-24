@@ -5,4 +5,6 @@ class Bug < ApplicationRecord
 	
 	has_one :fix
     has_one :user, through: :fix
+
+    mount_uploader :screenshot, ImageUploader
 end

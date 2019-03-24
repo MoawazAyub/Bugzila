@@ -5,8 +5,8 @@
 <h5><b>Creation Time: </b><%= @bug.created_at %></h5>
 
 <h5><b>Deadline: </b><%= @bug.deadline %></h5>
-<h5><b>ScreenShot: </b><%= @bug.screenshot %></h5>
-<img src="<%= @bug.screenshot %>">
+<h5><b>ScreenShot: </b></h5>
+<%= image_tag @bug.screenshot_url.to_s %>
 <h5><b>Type: </b><%= @bug.bug_type %></h5>
 <h5><b>Project: </b><%= Project.find(@bug.project_id).title %></h5>
 <h5><b>Founder: </b><%= User.find(@bug.founder_id).username %></h5>
