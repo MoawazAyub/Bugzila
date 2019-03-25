@@ -1,9 +1,9 @@
 class BugsController < ApplicationController
   before_action :find_bug, only: [:show, :edit, :update, :destroy]
-  def index
-    @bugs = Bug.all
-    authorize @bugs
-  end
+  #def index
+  #  @bugs = Bug.all
+  #  authorize @bugs
+  #end
 
   def already_bug(project,new_bug)
 

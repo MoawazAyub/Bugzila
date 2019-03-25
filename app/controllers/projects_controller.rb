@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
     authorize @projects
+    #@projects = ProjectPolicy::Scope.new(current_user, @projects).resolve
+    @projects = policy_scope(@projects)
   end
 
   def new
@@ -23,6 +25,8 @@ class ProjectsController < ApplicationController
   def show
     @bugs = @project.bugs
     @users = User.all
+
+    @users = ProjectPolicy::Scope.new(current_user, @users, @project).user_resolve
   end
 
   def create

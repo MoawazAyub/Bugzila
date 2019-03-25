@@ -17,7 +17,7 @@
 
 	<% @projects.each do |project| %>
 
-		<% if project.users.include? current_user %>
+		<!-- if project.users.include? current_user %>-->
 			<tr>
 				<td><%= project.id %></td>
 				<td><%= project.title %></td>
@@ -25,8 +25,12 @@
 				<td><%= project.created_at %></td>
 				<td><%= link_to "show", project, class: 'whiter' %></td>
 			</tr>
-		<% end %>
+		<!-- end %>-->
 		  
+	<% end %>
+
+	<% if current_user.role == 'manager' %>
+		<%= link_to "Create Project", new_project_path%>
 	<% end %>
 
 </table> 

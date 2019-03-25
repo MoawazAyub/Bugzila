@@ -66,7 +66,7 @@
 		</tr>
 
 		<% @users.each do |user| %>
-			<% if (!@project.users.include? user) && !(user.role == 'manager')%>
+			<!-- if (!@project.users.include? user) && !(user.role == 'manager')%>-->
 				<tr>
 					<td><%= user.id %></td>
 					<td><%= user.email %></td>
@@ -76,7 +76,7 @@
 					<td><%= link_to "Add this User", user_assign_path(@project.id,user.id), class: 'whiter', method: :post %></td>
 
  				</tr>
-			<% end %>
+			<!-- end %>-->
 				  
 		<% end %>
 
