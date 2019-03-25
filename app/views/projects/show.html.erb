@@ -83,3 +83,37 @@
 	</table>
 
 <% end %>
+
+
+<% if current_user.role == 'manager' %>
+	<hr class="drawline">
+	<h4>People in this Project</h4>
+
+	<table style="width:100%">
+		<tr>
+			<th>User ID</th>
+			<th>Email</th>
+			<th>Name</th>
+			<th>User joining date</th>
+			<th>Role</th>
+			<th>Action</th>
+		</tr>
+
+		<% @project_users.each do |user| %>
+			<!-- if (!@project.users.include? user) && !(user.role == 'manager')%>-->
+				<tr>
+					<td><%= user.id %></td>
+					<td><%= user.email %></td>
+					<td><%= user.username %></td>
+					<td><%= user.created_at %></td>
+					<td><%= user.role %></td>
+					<td><%= link_to "Remove this User", remove_user_path(@project.id,user.id), class: 'whiter', method: :post %></td>
+
+ 				</tr>
+			<!-- end %>-->
+				  
+		<% end %>
+
+	</table>
+
+<% end %>

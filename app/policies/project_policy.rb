@@ -34,6 +34,22 @@ class ProjectPolicy < ApplicationPolicy
       
     end
 
+    def user_in_project
+      @temp = []
+      if user.role != 'manager'
+        return @temp
+      end
+      scope.each do |my_user|
+        if (!(my_user.role == 'manager') && (@project.users.include? my_user))
+          @temp << my_user
+        end
+      end
+      scope = @temp
+      
+    end
+
+
+
   end
 
   def show?

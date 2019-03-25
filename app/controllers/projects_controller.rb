@@ -25,8 +25,9 @@ class ProjectsController < ApplicationController
   def show
     @bugs = @project.bugs
     @users = User.all
-
+    @project_users = User.all
     @users = ProjectPolicy::Scope.new(current_user, @users, @project).user_resolve
+    @project_users = ProjectPolicy::Scope.new(current_user, @project_users, @project).user_in_project
   end
 
   def create
@@ -53,6 +54,14 @@ class ProjectsController < ApplicationController
   def userassign
     @project = Project.find(params[:id])
     Assignment.create(user_id: params[:user_id], project_id: @project.id)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def remove_user
+    @project = Project.find(params[:id])
+    @assignment = Assignment.where(user_id: params[:user_id], project_id: @project.id)
+    @assignment.destroy_all
+    #Assignment.create(user_id: params[:user_id], project_id: @project.id)
     redirect_back(fallback_location: root_path)
   end
 

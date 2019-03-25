@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post 'projects/:id/userassign/:user_id', to: 'projects#userassign', :as => :user_assign
+  post 'projects/:id/remove_user/:user_id', to: 'projects#remove_user', :as => :remove_user
   post 'projects/:project_id/bugs/:id/assign', to: 'bugs#assign', :as => :bug_assign
   #get 'bugs/index'
   #get 'bugs/create'
