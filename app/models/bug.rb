@@ -9,6 +9,8 @@ class Bug < ApplicationRecord
     mount_uploader :screenshot, ImageUploader
 
     validates :title, presence: true
+    validates :title, uniqueness: { scope: :project_id,
+    message: "Already bug" }
 
 
 end

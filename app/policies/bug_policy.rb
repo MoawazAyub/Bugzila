@@ -12,7 +12,11 @@ class BugPolicy < ApplicationPolicy
 
   def update?
     #isQa
-    true
+    if user.role == 'qa' || user.role == 'developer'
+      return true
+    end
+
+    false
   end
 
   def create?

@@ -7,7 +7,7 @@
 
 <br>
 
-<% if current_user.role == 'manager' %>
+<% if policy(Project).edit?  %>
 	<%= link_to "Edit project ", edit_project_path(@project) %>|
 	<%= link_to "Delete project", project_path(@project), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
 
@@ -47,7 +47,8 @@
 
 </table>
 
-<% if current_user.role == 'qa' %>
+<% if policy(Bug).create? %>
+<!-- if current_user.role == 'qa' %>-->
 	<%= link_to "Add new Bug", new_project_bug_path(@project) %> 
 <% end %>
 

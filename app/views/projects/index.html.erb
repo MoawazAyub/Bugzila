@@ -29,8 +29,8 @@
 		  
 	<% end %>
 
-	<% if current_user.role == 'manager' %>
-		<%= link_to "Create Project", new_project_path%>
-	<% end %>
+	<!-- if current_user.role == 'manager' %>-->
+		<%= link_to "Create Project", new_project_path if policy(Project).create? %>
+	<!-- end %>-->
 
 </table> 

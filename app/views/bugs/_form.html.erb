@@ -21,22 +21,25 @@
 	    <%= f.label :deadline%><br>
 		<%= f.date_select :deadline,{:order => [:year, :month, :day]}, autofocus: true %><br>
 	    </div>
-	  </div>  
+	  </div>
+	<% end %>
+  
 
 	  <div class="row">
 	    <div class="form-group col-md-4">
 	    <%= f.label :bug_type%><br>
-		<%= f.select :bug_type, ['feature', 'bug'], class: "form-control"%><br>
+		<%= f.select :bug_type, ['bug','feature', ], id: "type", class: "form-control"%><br>
 	    </div>
 	  </div>
-	 <% end %>
-
+	
 	  <div class="row">
 	    <div class="form-group col-md-4">
 	    <%= f.label :status%><br>
-		<%= f.select :status, ['new', 'started', 'completed', 'resolved'], class: "form-control"%><br>
+		<%= f.select :status, ['new', 'started', 'completed'], id: "btype", class: "form-control"%><br>
 	    </div>
 	  </div>
+
+	<% if current_user.role != 'developer' %>
 
 	  <div class="row">
 	    <div class="form-group col-md-4">
@@ -45,10 +48,13 @@
 	    </div>
 	  </div>
 
+	 <% end %>
+
 
 
 
 
 	<%= f.submit %>
 <% end %>
+
 

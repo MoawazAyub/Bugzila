@@ -12,7 +12,7 @@ class ProjectPolicy < ApplicationPolicy
     def resolve
       @temp = []
       scope.each do |project|
-        if project.users.include? user
+        if ((project.manager == user) || (project.users.include? user))
           @temp << project
         end
       end
@@ -53,17 +53,11 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    if record.users.include? user
-      return true
-    end
-    false
+    ((record.users.include? user) || (record.manager == user))
   end
 
   def index?
-  	if user.present?
-  		return true
-    end
-    false
+  	user.present?
   end
 
   def edit?
@@ -71,11 +65,11 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def update?
-    isAdmin
+    isAdmin?
   end
 
   def create?
-    isAdmin
+    isAdmin?
   end
 
   def new?
@@ -84,11 +78,8 @@ class ProjectPolicy < ApplicationPolicy
 
   private
 
-  def isAdmin
-  	if user.present? && user.role == 'manager'
-    	return true
-    end
-    false
+  def isAdmin?
+    user.present? && user.role == 'manager'
   end
 
 

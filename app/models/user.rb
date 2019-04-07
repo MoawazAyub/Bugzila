@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   #has_one :bug_worker, :class_name => 'Bug', :foreign_key => 'worker_id'
   has_one :bug_founder, :class_name => 'Bug', :foreign_key => 'founder_id'
+  #has_one :project, :class_name => 'Project', :foreign_key => 'manager_id'
 
   has_many :fixes
   has_many :bugs, through: :fixes

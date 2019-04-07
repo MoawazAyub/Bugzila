@@ -20,3 +20,29 @@
 //= require popper
 //= require bootstrap
 //= require bootstrap-datepicker
+
+
+
+$(document).on("turbolinks:load", function(){
+	set_stuff = function(){
+		first = $( "#bug_bug_type option:selected" ).text()
+		$("#bug_status").find('option').each(function(){
+			if(first == 'bug') {
+				if($(this).val() == 'completed') {
+					$(this).val("resolved")
+					$(this).html("<option>resolved</option>")
+				}
+			}
+			else if(first == 'feature') {
+				if($(this).val() == 'resolved') {
+					$(this).val("completed")
+					$(this).html("<option>completed</option>")
+				}
+			}
+		});
+	}
+	set_stuff();
+	$('#bug_bug_type').on("change", function(){
+		set_stuff();
+	}); 
+});

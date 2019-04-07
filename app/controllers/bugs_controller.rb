@@ -1,36 +1,15 @@
 class BugsController < ApplicationController
   before_action :find_bug, only: [:show, :edit, :update, :destroy]
-  #def index
-  #  @bugs = Bug.all
-  #  authorize @bugs
-  #end
 
-  def already_bug(project,new_bug)
-
-    project.bugs.each do |bug|
-      if !(bug.id.nil?) && bug.title == new_bug.title
-        return true
-      end
-    end
-    return false
-    
-  end
 
   def create
     @project = Project.find(params[:project_id])
-    @temp_project = @project
-    @bug = @project.bugs.new(bug_params)
-    @temp = already_bug(@temp_project,@bug)
-    if already_bug(@temp_project,@bug)
-      flash[:notice] = "Bug Already exists!"
-      
-    end
-    #binding.pry
-
+    @bug = @project.bugs.new(bug_params)  
     @bug.founder_id = current_user.id
     authorize @bug
     
-    if !(@temp) && @bug.save  
+    #if !(@temp) && @bug.save
+    if @bug.save  
 
       redirect_to [@project, @bug]
     else
@@ -45,22 +24,17 @@ class BugsController < ApplicationController
     @project = Project.find(params[:project_id])
     @bug = Bug.new
     authorize @bug
-
-
   end
 
   def show
   end
 
   def update
-
     if @bug.update(bug_params)
-
       redirect_to [@project, @bug]
     else
       render 'new'
     end
-
   end
 
 

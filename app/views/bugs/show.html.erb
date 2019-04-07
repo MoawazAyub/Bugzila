@@ -22,12 +22,13 @@
 
 <% end %>
 
+
 <% if current_user.role == 'qa' %>
 
 	<%= link_to "Delete Bug", project_bug_path(@project.id, @bug.id), method: :delete, data: { confirm: "Are you Sure" },class:'reder' %>
 
 <% end %>
-
+<%= link_to "| back", project_url(@bug.project_id) %>
 <% if current_user.role == 'developer' && !@bug.user  %>
 	<%= button_to 'Assign this Bug to yourself', bug_assign_path, method: :post %>
 
